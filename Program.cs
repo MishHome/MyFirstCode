@@ -37,7 +37,7 @@ class Programm
 
 
         a = 9;
-        b = 10;
+        b = 0;
 
         z = myCalc.DivisionDigit(a, b);
 
