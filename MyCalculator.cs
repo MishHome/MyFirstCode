@@ -27,9 +27,17 @@
 
         }
         public int MultiplicationDigit(int a, int b)
-        { 
-            int z = 0;
-            z = a * b;
+        {
+            X = a;
+            Y = b;
+            int z = a * b;
+            return z;
+        }
+        public int DivisionDigit(int a, int b)
+        {
+            X = a;
+            Y = b;
+            int z = a / b;
             return z;
         }
     }

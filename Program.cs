@@ -24,9 +24,24 @@ class Programm
 
         Console.WriteLine(View);
 
+
+        a = 5;
+        b = 7;
+
         z = myCalc.MultiplicationDigit(a, b);
 
         View = $"Результат умножения числа {myCalc.X} и {myCalc.Y} равен {z}";
+
+        Console.WriteLine(View);
+
+
+
+        a = 9;
+        b = 10;
+
+        z = myCalc.DivisionDigit(a, b);
+
+        View = $"Результат деления числа {myCalc.X} и {myCalc.Y} равен {z}";
 
         Console.WriteLine(View);
 
