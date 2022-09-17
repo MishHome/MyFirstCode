@@ -3,42 +3,71 @@
     internal class MyCalculator
     {
 
+        public MyCalculator()
+        {
+            message = String.Empty;
+        }
+
 
         public int X { get; set; }
         public int Y { get; set; }
+        public int Result { get; set; }
 
-
-
-        public int AddDigit(int a, int b)
+        string message;
+        public string Message 
         {
+            get 
+            { 
+                return message;
+            }
+            set 
+            {
+               message = $"{X} {value} {Y} = {Result}";
+            } 
+        } 
+
+
+
+        public void AddDigit(int a, int b)
+        {
+           
             X = a;
             Y = b;
-            int z = a + b;
-            return z;
+            Result  = a + b;
+            Message = "+";
 
         }
-        
-        public int SubtractDigit(int a, int b)
+
+        public void SubtractDigit(int a, int b)
         {
             X = a;
             Y = b;
-            int z = a - b;
-            return z;
+            Result = a - b;
+            Message = "-";
 
         }
-        public int MultiplicationDigit(int a, int b)
+        public void MultiplicationDigit(int a, int b)
         {
             X = a;
             Y = b;
-            int z = a * b;
-            return z;
+            Result = a * b;
+            Message = "*";
+
         }
-        public int DivisionDigit(int a, int b)
+        public void DivisionDigit(int a, int b)
         {
             X = a;
             Y = b;
-            int z = a / b;
-            return z;
+            if (b != 0)
+            {
+                Result = a / b;
+                Message = "/";
+            }
+            else 
+            {
+                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
+            }
+
         }
     }
 }

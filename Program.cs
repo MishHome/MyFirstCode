@@ -1,4 +1,6 @@
 ﻿using MyFirstCode;
+using System.Net.Mail;
+
 class Programm
 {
     static void Main(string[] args)
@@ -8,43 +10,42 @@ class Programm
         MyCalculator myCalc = new MyCalculator();
 
         int a, b;
-        a = 10;
-        b = 3;
+        a = 10; b = 3;
 
-        int z = myCalc.AddDigit(a, b);
+        myCalc.AddDigit(a, b);      
+        Console.WriteLine(myCalc.Message );
 
-        
-
-        string View = $"Результат сложения числа {myCalc.X} и {myCalc.Y} равен {z}";
-        Console.WriteLine(View);
-
-        z = myCalc.SubtractDigit(a, b);
-
-         View = $"Результат вычитания  числа {myCalc.X} и {myCalc.Y} равен {z}";
-
-        Console.WriteLine(View);
+        myCalc.SubtractDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
 
-        a = 5;
-        b = 7;
+        a = 5; b = 7;
+        myCalc.MultiplicationDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
-        z = myCalc.MultiplicationDigit(a, b);
-
-        View = $"Результат умножения числа {myCalc.X} и {myCalc.Y} равен {z}";
-
-        Console.WriteLine(View);
-
+        a = 9; b = 3;
+        myCalc.DivisionDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
 
-        a = 9;
-        b = 0;
+        a = 9; b = 0;
+        myCalc.DivisionDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
-        z = myCalc.DivisionDigit(a, b);
+        a = 5; b =2;
+        myCalc.DivisionDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
-        View = $"Результат деления числа {myCalc.X} и {myCalc.Y} равен {z}";
+        a = 1; b = 2;
+        myCalc.DivisionDigit(a, b);
+        Console.WriteLine(myCalc.Message);
 
-        Console.WriteLine(View);
 
+
+
+
+        // Console. Hight mountains and beautifull light star.I love walk in the cute PARIS street.it is interesting read because
+        // Mary writes this programm.
         //*********************************
         Console.ReadLine();
     }
