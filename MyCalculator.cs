@@ -26,7 +26,11 @@
             return z;
 
         }
-        
-
+        public int MultiplicationDigit(int a, int b)
+        { 
+            int z = 0;
+            z = a * b;
+            return z;
+        }
     }
 }

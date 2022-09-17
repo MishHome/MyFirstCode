@@ -13,17 +13,22 @@ class Programm
 
         int z = myCalc.AddDigit(a, b);
 
-        a = 4;
-        b = 7;
+        
 
         string View = $"Результат сложения числа {myCalc.X} и {myCalc.Y} равен {z}";
         Console.WriteLine(View);
 
-        z = myCalc.SubtractDigit(b, a);
+        z = myCalc.SubtractDigit(a, b);
 
-        string View2 = $"Результат вычитания  числа {myCalc.X} и {myCalc.Y} равен {z}";
+         View = $"Результат вычитания  числа {myCalc.X} и {myCalc.Y} равен {z}";
 
-        Console.WriteLine(View2);
+        Console.WriteLine(View);
+
+        z = myCalc.MultiplicationDigit(a, b);
+
+        View = $"Результат умножения числа {myCalc.X} и {myCalc.Y} равен {z}";
+
+        Console.WriteLine(View);
 
         //*********************************
         Console.ReadLine();
