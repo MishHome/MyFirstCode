@@ -8,17 +8,17 @@ namespace MyFirstCode
 {
     internal class MyCalculator
     {
-        //public MyCalculator()
-        //{
-        //}
+        
 
-        int X { get; set; }
-        int Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        int Result { get; set; }
+     
 
-        int AddDigit(int a, int b) 
+       public int AddDigit(int a, int b) 
         {
+            X = a;
+            Y = b;
             int z = a + b;
             return z;
         

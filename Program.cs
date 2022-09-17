@@ -1,13 +1,24 @@
-﻿class Programm
-{
-    static void Main(string[] args)
+﻿using MyFirstCode;
+    class Programm
     {
-       
-        
+        static void Main(string[] args)
+        {
 
-        string result = $"Результат сложения числа {myProg.X} и {myProg.Y} равен {z}";     
+        
+            MyCalculator myCalc = new MyCalculator();
             
-        Console.WriteLine(result);
-        Console.ReadLine(); 
+            int a,b;
+            a = 10;
+            b = 3;
+
+            int z = myCalc.AddDigit(a, b);
+
+            a = 4;
+            b = 7;
+
+            string View = $"Результат сложения числа {myCalc.X} и {myCalc.Y} равен {z}";
+
+            Console.WriteLine(View);
+            Console.ReadLine();
+        }
     }
-}
