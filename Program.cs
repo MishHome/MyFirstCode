@@ -1,24 +1,31 @@
 ﻿using MyFirstCode;
-    class Programm
+class Programm
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
 
-        
-            MyCalculator myCalc = new MyCalculator();
-            
-            int a,b;
-            a = 10;
-            b = 3;
 
-            int z = myCalc.AddDigit(a, b);
+        MyCalculator myCalc = new MyCalculator();
 
-            a = 4;
-            b = 7;
+        int a, b;
+        a = 10;
+        b = 3;
 
-            string View = $"Результат сложения числа {myCalc.X} и {myCalc.Y} равен {z}";
+        int z = myCalc.AddDigit(a, b);
 
-            Console.WriteLine(View);
-            Console.ReadLine();
-        }
+        a = 4;
+        b = 7;
+
+        string View = $"Результат сложения числа {myCalc.X} и {myCalc.Y} равен {z}";
+        Console.WriteLine(View);
+
+        z = myCalc.SubtractDigit(b, a);
+
+        string View2 = $"Результат вычитания  числа {myCalc.D} и {myCalc.C} равен {z}";
+
+        Console.WriteLine(View2);
+
+        //*********************************
+        Console.ReadLine();
     }
+}
