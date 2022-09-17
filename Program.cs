@@ -21,7 +21,7 @@ class Programm
 
         z = myCalc.SubtractDigit(b, a);
 
-        string View2 = $"Результат вычитания  числа {myCalc.D} и {myCalc.C} равен {z}";
+        string View2 = $"Результат вычитания  числа {myCalc.X} и {myCalc.Y} равен {z}";
 
         Console.WriteLine(View2);
 

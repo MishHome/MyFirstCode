@@ -17,16 +17,16 @@
             return z;
 
         }
-        public int D { get; set; }
-        public int C { get; set; }
+        
         public int SubtractDigit(int a, int b)
         {
-            D = a;
-            C = b;
+            X = a;
+            Y = b;
             int z = a - b;
             return z;
 
         }
+        
 
     }
 }
