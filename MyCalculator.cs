@@ -11,7 +11,10 @@
 
         public int X { get; set; }
         public int Y { get; set; }
-        public int Result { get; set; }
+        public float Result { get; set; }
+        public float D { get; set; }
+        public float C { get; set; }
+
 
         string message;
         public string Message 
@@ -24,13 +27,13 @@
             {
                message = $"{X} {value} {Y} = {Result}";
             } 
-        } 
+        }
 
-
+ 
 
         public void AddDigit(int a, int b)
         {
-           
+
             X = a;
             Y = b;
             Result  = a + b;
@@ -64,6 +67,21 @@
                 Message = "/";
             }
             else 
+            {
+                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
+            }
+
+        }
+        public void DivisionDigit(float a, float b)
+        {
+            C = a;
+            D = b;
+            if (b != 0)
+            {
+                Result = a / b;
+                Message = "/";
+            }
+            else
             {
                 this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
             }

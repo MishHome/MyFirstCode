@@ -6,7 +6,7 @@ class Programm
 {
     static void Main(string[] args)
     {
-        
+
         MyCalculator myCalc = new MyCalculator();
         int a, b;
         a = 10; b = 3;
@@ -39,13 +39,13 @@ class Programm
         myCalc.DivisionDigit(a, b);
         Console.WriteLine(myCalc.Message);
         //мой пример
-        float x;
-        float y;
+       float x;
+       float y;
         x = 9;
         y = 10;
-       
-        float c = y / x;
-        Console.WriteLine($"{y} / {x} равно {c} ");
+
+        myCalc.DivisionDigit(x, y);
+        Console.WriteLine(myCalc.Message);
 
         // Console. Hight mountains and beautifull light star.I love walk in the cute PARIS street.it is interesting read because
         // Mary writes this programm.
