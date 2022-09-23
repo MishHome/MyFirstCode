@@ -29,7 +29,8 @@
             } 
         }
 
- 
+
+
 
         public void AddDigit(int a, int b)
         {
@@ -74,6 +75,7 @@
         }
         public void DivisionDigit(float a, float b)
         {
+             Console.Write("введите число: ");
             C = a;
             D = b;
             if (b != 0)
@@ -83,7 +85,8 @@
             }
             else
             {
-                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
+                this.message = $"{C}/{D} = нет значения. Делить на нуль нельзя!";
+
             }
 
         }
