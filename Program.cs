@@ -9,16 +9,28 @@ class Programm
     {
         MyCalculator myCalc = new MyCalculator();
         string? operation = "";
+        string? s = "";
         
         while (operation.Equals("q") ==false )
         {
             Console.Write("Введите первое число: ");
-            int x = Convert.ToInt32(Console.ReadLine());
+            int x;
+            s = Console.ReadLine();
+            if (int.TryParse(s, out x) ==false)
+            {
+                Console.WriteLine("Ошибка ввода");
+                continue; 
+            }
 
             Console.Write("Введите второе число: ");
-            int y = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Введите операцию или q для выхода: ");
+            int y;
+            s = Console.ReadLine();
+            if(int.TryParse(s, out y) ==false)
+            {
+                Console.WriteLine("Ошибка ввода");
+                continue;
+            }
+            Console.Write("Введите операцию + - * /  или q для выхода: ");
             operation = Console.ReadLine();
             if (operation == null)
                 return;
@@ -43,6 +55,11 @@ class Programm
             {
                 myCalc.DivisionDigit(x, y);
                 Console.WriteLine(myCalc.Message);
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели недопустимый символ");
+                continue;
             }
             Console.ReadLine();
         }
