@@ -10,6 +10,7 @@ class Programm
         
         while (operation.Equals("q") ==false )
         {
+            //ввод и проверка корректности введеного значения
             Console.Write("Введите первое число: ");
             int x;
             s = Console.ReadLine();
@@ -31,42 +32,38 @@ class Programm
                 Console.WriteLine("Ошибка ввода");
                 continue;
             }
-            Console.Write("Введите операцию + - * / % или q для выхода: ");
-            operation = Console.ReadLine();
+            Console.Write("Введите операцию: + , - ,  * , / , % или q для выхода: ");
+            operation = Console.ReadLine();          
             if (operation == null)
                 return;
 
-            if (operation.Equals("+"))
-            {
-                myCalc.AddDigit(x, y);
-                Console.WriteLine(myCalc.Message);
 
-            }
-            else if (operation.Equals("-"))
+            //ветвление для выбора функции
+            switch (operation)
             {
-                myCalc.SubtractDigit(x, y);
-                Console.WriteLine(myCalc.Message);
+                case "+":
+                    myCalc.AddDigit(x, y);
+                    break;
+                case "-":
+                    myCalc.SubtractDigit(x, y);
+                    break;
+                case "*":
+                    myCalc.MultiplicationDigit(x, y);
+                    break;
+                case "/":
+                    myCalc.DivisionDigit(x, y);
+                    break;
+                case "%":
+                    myCalc.RemainsDigit(x, y);
+                    break;
+                default:
+                    Console.WriteLine("Вы ввели недопустимый символ");
+                    continue;
+                   
             }
-            else if (operation.Equals("*"))
-            {
-                myCalc.MultiplicationDigit(x, y);
-                Console.WriteLine(myCalc.Message);
-            }
-            else if (operation.Equals("/"))
-            {
-                myCalc.DivisionDigit(x, y);
-                Console.WriteLine(myCalc.Message);
-            }
-            else if (operation.Equals("%"))
-            {
-                myCalc.RemainsDigit(x, y);
-                Console.WriteLine(myCalc.Message);
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели недопустимый символ");
-                continue;
-            }
+           
+
+            Console.WriteLine(myCalc.Message);
             Console.ReadLine();
         }
 

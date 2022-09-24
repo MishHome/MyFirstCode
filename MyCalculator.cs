@@ -39,32 +39,35 @@
 
         public void AddDigit(int a, int b)
         {
-
+            FlagFloat = false;
             X = a;
             Y = b;
             Result  = a + b;
             Message = "+";
-            FlagFloat = false;
+           
         }
 
         public void SubtractDigit(int a, int b)
         {
+            FlagFloat = false;
             X = a;
             Y = b;
             Result = a - b;
             Message = "-";
-            FlagFloat = false;
+           
         }
         public void MultiplicationDigit(int a, int b)
         {
+            FlagFloat = false;
             X = a;
             Y = b;
             Result = a * b;
             Message = "*";
-            FlagFloat = false;
+
         }
         public void DivisionDigit(int a, int b)
         {
+            FlagFloat = false;
             X = a;
             Y = b;
             if (b != 0)
@@ -72,7 +75,7 @@
                 if (a % b == 0)
                 {
                     Result = a / b;
-                    FlagFloat = false;
+                   
                 }
                 else
                 {
@@ -91,20 +94,23 @@
 
         public void RemainsDigit(int a ,int b)
         {
+            FlagFloat = false;
             X = a;
             Y = b;
-
             if (b != 0)
             {
-                Result = a % b;
+                if (a % b == 0)
+                    Result = a % b;
+                else
+                {
+                    ResultFloat = (float)a / (float)b;
+                    FlagFloat = true;
+                }
                 Message = "%";
             }
             else
-            {
-                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
-            }
+                this.message = $"{X} % {Y} = нет значения. Делить на нуль нельзя!";
 
-            FlagFloat = false;
 
 
         }
