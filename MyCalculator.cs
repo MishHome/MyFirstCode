@@ -9,11 +9,13 @@
         }
 
 
-        public int X { get; set; }
-        public int Y { get; set; }
-        public float Result { get; set; }
-        public float D { get; set; }
-        public float C { get; set; }
+        int X { get; set; }
+        int Y { get; set; }
+        int Result { get; set; }
+        
+        float ResultFloat { get; set; }
+        bool FlagFloat { get; set; }
+
 
 
         string message;
@@ -25,7 +27,10 @@
             }
             set 
             {
-               message = $"{X} {value} {Y} = {Result}";
+               if (FlagFloat)
+                    message = $"{X} {value} {Y} = {ResultFloat}";
+               else
+                    message = $"{X} {value} {Y} = {Result}";
             } 
         }
 
@@ -39,7 +44,7 @@
             Y = b;
             Result  = a + b;
             Message = "+";
-
+            FlagFloat = false;
         }
 
         public void SubtractDigit(int a, int b)
@@ -48,7 +53,7 @@
             Y = b;
             Result = a - b;
             Message = "-";
-
+            FlagFloat = false;
         }
         public void MultiplicationDigit(int a, int b)
         {
@@ -56,7 +61,7 @@
             Y = b;
             Result = a * b;
             Message = "*";
-
+            FlagFloat = false;
         }
         public void DivisionDigit(int a, int b)
         {
@@ -64,31 +69,45 @@
             Y = b;
             if (b != 0)
             {
-                Result = a / b;
+                if (a % b == 0)
+                {
+                    Result = a / b;
+                    FlagFloat = false;
+                }
+                else
+                {
+                    ResultFloat = (float)a / (float)b;
+                    FlagFloat = true;
+                }
                 Message = "/";
             }
             else 
             {
                 this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
             }
-
+ 
         }
-        public void DivisionDigit(float a, float b)
+       
+
+        public void RemainsDigit(int a ,int b)
         {
-             Console.Write("введите число: ");
-            C = a;
-            D = b;
+            X = a;
+            Y = b;
+
             if (b != 0)
             {
-                Result = a / b;
-                Message = "/";
+                Result = a % b;
+                Message = "%";
             }
             else
             {
-                this.message = $"{C}/{D} = нет значения. Делить на нуль нельзя!";
-
+                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
             }
 
+            FlagFloat = false;
+
+
         }
+
     }
 }
