@@ -28,7 +28,7 @@ class Programm
     static string? ControllerInputOperation(string[] stringArray) 
     {
        
-        string stringMessage = $"Введите операцию: {String.Join(" ",stringArray)} или q для выхода:";
+        string stringMessage = $"Введите операцию: {String.Join(" ",stringArray)} или q для выхода: ";
         while (true)
         {
             Console.Write(stringMessage);
@@ -41,11 +41,8 @@ class Programm
             { 
                 if(_operator.Equals(strInput))
                     return _operator;
-
-               
             } 
                 Console.WriteLine("Ошибка ввода");
-          
         }
     }
 

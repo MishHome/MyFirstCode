@@ -10,7 +10,7 @@
 
         public string[] StringArrayOperations => new string[] { "+", "-", "*", "/", "%" };
 
-    public MyCalculator() { }
+        public MyCalculator() { }
 
         public string MessegeResult()
         {
@@ -26,9 +26,14 @@
                 return null;
 
             if (int.TryParse(s, out int y))
-               return y;
+            {
+                if (y >= int.MaxValue)
+                    return null;
+                else 
+                    return y;
+            }
             else
-               return null;
+                return null;
         }
 
 
