@@ -5,68 +5,64 @@ class Programm
     static void Main(string[] args)
     {
         MyCalculator myCalc = new MyCalculator();
-        string? operation = "";
-        string? s = "";
-        
-        while (operation.Equals("q") ==false )
-        {
-            //ввод и проверка корректности введеного значения
-            Console.Write("Введите первое число: ");
-            int x;
-            s = Console.ReadLine();
-            if(s == null || s.Equals("q"))
-                break;
-            if (int.TryParse(s, out x) ==false)
-            {
-                Console.WriteLine("Ошибка ввода");
-                continue; 
-            }
 
-            Console.Write("Введите второе число: ");
-            int y;
-            s = Console.ReadLine();
-            if (s == null || s.Equals("q"))
-                break;
-            if (int.TryParse(s, out y) ==false)
+        do
+        {
+            int x = ControllerInputDigitInt("Введите первое число: ");
+            int y = ControllerInputDigitInt("Введите второе число: ");
+
+            string? operation = ControllerInputOperation(myCalc.StringArrayOperations);
+            if (operation == null)
+                break;         
+
+            myCalc.Operation(x, y, operation);
+            Console.WriteLine(myCalc.MessegeResult());
+
+            Console.ReadLine();
+        }
+        while (true);
+
+        Environment.Exit(0);
+    }
+
+    static string? ControllerInputOperation(string[] stringArray) 
+    {
+       
+        string stringMessage = $"Введите операцию: {String.Join(" ",stringArray)} или q для выхода:";
+        while (true)
+        {
+            Console.Write(stringMessage);
+            string? strInput = Console.ReadLine();
+            
+            if (strInput == null || strInput.Equals("q") )
+                return null;
+
+            foreach (string _operator in stringArray) 
+            { 
+                if(_operator.Equals(strInput))
+                    return _operator;
+
+               
+            } 
+                Console.WriteLine("Ошибка ввода");
+          
+        }
+    }
+
+    static int ControllerInputDigitInt(string s)
+    {
+        while (true)
+        {
+            Console.Write(s);
+            var str = Console.ReadLine();
+
+            if (int.TryParse(str, out int a) == false)
             {
                 Console.WriteLine("Ошибка ввода");
                 continue;
             }
-            Console.Write("Введите операцию: + , - ,  * , / , % или q для выхода: ");
-            operation = Console.ReadLine();          
-            if (operation == null)
-                return;
-
-
-            //ветвление для выбора функции
-            switch (operation)
-            {
-                case "+":
-                    myCalc.AddDigit(x, y);
-                    break;
-                case "-":
-                    myCalc.SubtractDigit(x, y);
-                    break;
-                case "*":
-                    myCalc.MultiplicationDigit(x, y);
-                    break;
-                case "/":
-                    myCalc.DivisionDigit(x, y);
-                    break;
-                case "%":
-                    myCalc.RemainsDigit(x, y);
-                    break;
-                default:
-                    Console.WriteLine("Вы ввели недопустимый символ");
-                    continue;
-                   
-            }
-           
-
-            Console.WriteLine(myCalc.Message);
-            Console.ReadLine();
+            else
+                return a;
         }
-
-        Environment.Exit(0);
     }
 }

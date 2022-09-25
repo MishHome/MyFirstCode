@@ -1,118 +1,88 @@
 ﻿namespace MyFirstCode
 {
-    internal class MyCalculator
+    public class MyCalculator
     {
-
-        public MyCalculator()
-        {
-            message = String.Empty;
-        }
-
-
         int X { get; set; }
         int Y { get; set; }
-        int Result { get; set; }
-        
-        float ResultFloat { get; set; }
-        bool FlagFloat { get; set; }
+        string Operator { get; set; } = "";
+        public int? ResultInt { get; private set; }
+        public float? ResultFloat { get; private set; }
 
+        public string[] StringArrayOperations => new string[] { "+", "-", "*", "/", "%" };
 
+    public MyCalculator() { }
 
-        string message;
-        public string Message 
+        public string MessegeResult()
         {
-            get 
-            { 
-                return message;
-            }
-            set 
-            {
-               if (FlagFloat)
-                    message = $"{X} {value} {Y} = {ResultFloat}";
-               else
-                    message = $"{X} {value} {Y} = {Result}";
-            } 
+            string err = "операция не корректна";
+            string res = $"{ResultInt ?? ResultFloat}";
+            string s = $"{X} {Operator} {Y} = {res ?? err}";
+            return s;
         }
 
-
-
-
-        public void AddDigit(int a, int b)
+        public int? ParsingInput(string s) 
         {
-            FlagFloat = false;
-            X = a;
-            Y = b;
-            Result  = a + b;
-            Message = "+";
-           
-        }
+            if (s == null)
+                return null;
 
-        public void SubtractDigit(int a, int b)
-        {
-            FlagFloat = false;
-            X = a;
-            Y = b;
-            Result = a - b;
-            Message = "-";
-           
-        }
-        public void MultiplicationDigit(int a, int b)
-        {
-            FlagFloat = false;
-            X = a;
-            Y = b;
-            Result = a * b;
-            Message = "*";
-
-        }
-        public void DivisionDigit(int a, int b)
-        {
-            FlagFloat = false;
-            X = a;
-            Y = b;
-            if (b != 0)
-            {
-                if (a % b == 0)
-                {
-                    Result = a / b;
-                   
-                }
-                else
-                {
-                    ResultFloat = (float)a / (float)b;
-                    FlagFloat = true;
-                }
-                Message = "/";
-            }
-            else 
-            {
-                this.message = $"{X}/{Y} = нет значения. Делить на нуль нельзя!";
-            }
- 
-        }
-       
-
-        public void RemainsDigit(int a ,int b)
-        {
-            FlagFloat = false;
-            X = a;
-            Y = b;
-            if (b != 0)
-            {
-                if (a % b == 0)
-                    Result = a % b;
-                else
-                {
-                    ResultFloat = (float)a / (float)b;
-                    FlagFloat = true;
-                }
-                Message = "%";
-            }
+            if (int.TryParse(s, out int y))
+               return y;
             else
-                this.message = $"{X} % {Y} = нет значения. Делить на нуль нельзя!";
+               return null;
+        }
 
 
+        public void Operation(int x, int y, string _operator)
+        {
 
+            ResultFloat = null;
+            ResultInt = null;
+            X = x;
+            Y = y;
+            Operator = _operator;
+
+            switch (_operator)
+            {
+                case "+":
+                    ResultInt = AddDigit(x, y);
+                    break;
+                case "-":
+                    ResultInt = SubtractDigit(x, y);
+                    break;
+                case "*":
+                    ResultInt = MultiplicationDigit(x, y);
+                    break;
+                case "/":
+                    ResultFloat = DivisionDigit(x, y);
+                    break;
+                case "%":
+                    ResultInt = RemainsDigit(x, y);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public int AddDigit(int a, int b) => a + b;
+        public int SubtractDigit(int a, int b) => a - b;
+        public int MultiplicationDigit(int a, int b) => a * b;
+
+        public float? DivisionDigit(int a, int b)
+        {
+            if (b == 0)
+                return null;
+
+            if (a % b == 0)
+                return (float)(a / b);
+            else
+                return (float)a / (float)b;
+        }
+        public int? RemainsDigit(int a, int b)
+        {
+            if (b == 0)
+                return null;
+            else
+                return a % b;
         }
 
     }
