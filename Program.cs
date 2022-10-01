@@ -15,7 +15,7 @@ class Programm
 
                 while (true)
                 {
-                    var ask = i == 0 ? "первое" : "второе";
+                    string ask = i == 0 ? "первое" : "второе";
                     Console.Write($"Введите {ask} число: ");
                     string? str = Console.ReadLine();
                     int digit;

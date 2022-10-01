@@ -130,7 +130,7 @@
                 return false;
             if (int.TryParse(str, out int a) == false)
             {
-                ErrorMessage = "Ошибка ввода";
+                ErrorMessage = "Ошибка ввода числа";
                 return false;
             }
             else
