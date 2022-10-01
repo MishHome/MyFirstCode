@@ -8,7 +8,7 @@
         public long? Resultlong { get; private set; }
         public float? ResultFloat { get; private set; }
 
-        public string[] StringArrayOperations => new string[] { "+", "-", "*", "/", "%" };
+        public static string[] StringArrayOperations => new string[] { "+", "-", "*", "/", "%" };
 
         public MyCalculator() { }
 
@@ -20,7 +20,7 @@
             return s;
         }
 
-        public long? ParsingInput(string s) 
+        public static long? ParsingInput(string s) 
         {
             if (s == null)
                 return null;
@@ -68,9 +68,9 @@
             }
         }
 
-        public long AddDigit(long a, long b) => a + b;
-        public long SubtractDigit(long a, long b) => a - b;
-        public long MultiplicationDigit(long a, long b) 
+        static long AddDigit(long a, long b) => a + b;
+        static long SubtractDigit(long a, long b) => a - b;
+        static long MultiplicationDigit(long a, long b) 
         {
            // int res;
             try
@@ -82,12 +82,12 @@
             catch (Exception ex)
             {
                // Console.WriteLine(ex.Message);  
-                throw;
+                throw ex.InnerException ?? ex;
             }
         
         }
 
-        public float? DivisionDigit(long a, long b)
+        static float? DivisionDigit(long a, long b)
         {
             if (b == 0)
                 return null;
@@ -97,12 +97,50 @@
             else
                 return (float)a / (float)b;
         }
-        public long? RemainsDigit(long a, long b)
+        static long? RemainsDigit(long a, long b)
         {
             if (b == 0)
                 return null;
             else
                 return a % b;
+        }
+
+        public static string? ControllerInputOperation(string[] stringArray)
+        {
+
+            string stringMessage = $"Введите операцию: {String.Join(" ", stringArray)} или q для выхода: ";
+            while (true)
+            {
+                Console.Write(stringMessage);
+                string? strInput = Console.ReadLine();
+
+                if (strInput == null || strInput.Equals("q"))
+                    return null;
+
+                foreach (string _operator in stringArray)
+                {
+                    if (_operator.Equals(strInput))
+                        return _operator;
+                }
+                Console.WriteLine("Ошибка ввода");
+            }
+        }
+
+        public static int ControllerInputDigitInt(string s)
+        {
+            while (true)
+            {
+                Console.Write(s);
+                var str = Console.ReadLine();
+
+                if (int.TryParse(str, out int a) == false)
+                {
+                    Console.WriteLine("Ошибка ввода");
+                    continue;
+                }
+                else
+                    return a;
+            }
         }
 
     }
