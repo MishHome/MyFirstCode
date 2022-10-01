@@ -8,15 +8,62 @@ class Programm
 
         do
         {
-            int x = MyCalculator.ControllerInputDigitInt("Введите первое число: ");
-            int y = MyCalculator.ControllerInputDigitInt("Введите второе число: ");
+            int x = 0, y = 0;
+            string? message;
+            for (int i = 0; i < 2; i++)
+            {
 
-            string? operation = MyCalculator.ControllerInputOperation(MyCalculator.StringArrayOperations);
-            
-            if (operation == null)
-                break;         
+                while (true)
+                {
+                    var ask = i == 0 ? "первое" : "второе";
+                    Console.Write($"Введите {ask} число: ");
+                    string? str = Console.ReadLine();
+                    int digit;
+                    if (MyCalculator.ControllerInputDigitInt(str, out digit, out message) == false)
+                    {
+                        Console.WriteLine(message);
+                        continue;
+                    }
+                    else
+                    {
+                        if (i == 0)
+                            x = digit;
+                        else
+                            y = digit;
 
-            myCalc.Operation(x, y, operation);
+                        break;
+                    }
+                }
+            }
+
+            string? strOperationInput;
+            while (true)
+            {
+                Console.Write($"Введите операцию: {String.Join(" ", MyCalculator.StringArrayOperations)} или q для выхода: ");
+                strOperationInput = Console.ReadLine();
+
+                var isValid = MyCalculator.ControllerInputOperation(strOperationInput, out string? ErrorMessage);
+                if (isValid == false)
+                {
+                    if (strOperationInput != null && strOperationInput.Equals("q"))
+                        return;
+                    Console.WriteLine(ErrorMessage);
+                    continue;
+                }
+                else
+                {
+                    if (strOperationInput != null && strOperationInput.Equals("q"))
+                        return;
+                    break;
+                }
+
+            }
+
+
+            if (strOperationInput == null)
+                break;
+
+            myCalc.Operation(x, y, strOperationInput);
             Console.WriteLine(myCalc.MessegeResult());
 
             Console.ReadLine();
@@ -26,5 +73,5 @@ class Programm
         Environment.Exit(0);
     }
 
-   
+
 }

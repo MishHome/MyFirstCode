@@ -20,7 +20,7 @@
             return s;
         }
 
-        public static long? ParsingInput(string s) 
+        public static long? ParsingInput(string s)
         {
             if (s == null)
                 return null;
@@ -29,7 +29,7 @@
             {
                 if (y >= int.MaxValue)
                     return null;
-                else 
+                else
                     return y;
             }
             else
@@ -70,21 +70,21 @@
 
         static long AddDigit(long a, long b) => a + b;
         static long SubtractDigit(long a, long b) => a - b;
-        static long MultiplicationDigit(long a, long b) 
+        static long MultiplicationDigit(long a, long b)
         {
-           // int res;
+            // int res;
             try
             {
-               // res = a * b;
+                // res = a * b;
                 long res2 = (long)a * (long)b;
                 return res2;
-             }
+            }
             catch (Exception ex)
             {
-               // Console.WriteLine(ex.Message);  
+                // Console.WriteLine(ex.Message);  
                 throw ex.InnerException ?? ex;
             }
-        
+
         }
 
         static float? DivisionDigit(long a, long b)
@@ -105,42 +105,40 @@
                 return a % b;
         }
 
-        public static string? ControllerInputOperation(string[] stringArray)
+        public static bool ControllerInputOperation(string? strInput, out string? ErrorMessage)
         {
 
-            string stringMessage = $"Введите операцию: {String.Join(" ", stringArray)} или q для выхода: ";
-            while (true)
+            ErrorMessage = null;
+            if (strInput == null)
+                return false;
+
+            foreach (string _operator in StringArrayOperations)
             {
-                Console.Write(stringMessage);
-                string? strInput = Console.ReadLine();
-
-                if (strInput == null || strInput.Equals("q"))
-                    return null;
-
-                foreach (string _operator in stringArray)
-                {
-                    if (_operator.Equals(strInput))
-                        return _operator;
-                }
-                Console.WriteLine("Ошибка ввода");
+                if (_operator.Equals(strInput))
+                    return true;
             }
+            ErrorMessage = "Ошибка ввода";
+            return false;
+
         }
 
-        public static int ControllerInputDigitInt(string s)
+        public static bool ControllerInputDigitInt(string? str, out int IntDigitA, out string? ErrorMessage)
         {
-            while (true)
+            ErrorMessage = null;
+            IntDigitA = 0;
+            if (str == null)
+                return false;
+            if (int.TryParse(str, out int a) == false)
             {
-                Console.Write(s);
-                var str = Console.ReadLine();
-
-                if (int.TryParse(str, out int a) == false)
-                {
-                    Console.WriteLine("Ошибка ввода");
-                    continue;
-                }
-                else
-                    return a;
+                ErrorMessage = "Ошибка ввода";
+                return false;
             }
+            else
+            {
+                IntDigitA = a;
+                return true;
+            }
+
         }
 
     }
